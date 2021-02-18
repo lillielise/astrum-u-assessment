@@ -63,8 +63,8 @@ const CreateIssueForm = (props) => {
             />
             <button
               disabled={
-                formikProps.values.body.length < 5 ||
-                formikProps.values.title.length < 5
+                formikProps.values.body.length < 3 ||
+                formikProps.values.title.length < 3
               }
               className={classes.button}
               type="submit"
