@@ -7,6 +7,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter, Switch } from "react-router-dom";
+import { ThemeProvider } from "react-jss";
 import Routes from "./Routes";
 
 const App = () => {
@@ -28,13 +29,19 @@ const App = () => {
     cache: new InMemoryCache(),
   });
 
+  const theme = {
+    colorPrimary: "#FFA500",
+  };
+
   return (
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Switch>
-          <Routes />
-        </Switch>
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Switch>
+            <Routes />
+          </Switch>
+        </BrowserRouter>
+      </ThemeProvider>
     </ApolloProvider>
   );
 };
