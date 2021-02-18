@@ -21,7 +21,7 @@ const UserOverview = (props) => {
         className={classes.header}
       >{`${props.user.name} (@${props.user.email})`}</p>
       <p>
-        <FontAwesomeIcon className={classes.icon} icon={faEnvelope} />{" "}
+        <FontAwesomeIcon className={classes.icon} icon={faEnvelope} />
         {props.user.email}
       </p>
       <p>

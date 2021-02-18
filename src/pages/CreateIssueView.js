@@ -1,8 +1,8 @@
 import { createUseStyles } from "react-jss";
 import { gql, useMutation } from "@apollo/client";
-import { Formik, Field, Form } from "formik";
-import Header from "../components/Header";
 import { useHistory } from "react-router-dom";
+import CreateIssueForm from "./create-issue/CreateIssueForm";
+import Header from "../components/Header";
 
 const CREATE_ISSUE = gql`
   mutation testMutation($input: CreateIssueInput!) {
@@ -19,39 +19,6 @@ const useStyles = createUseStyles({
     alignItems: "center",
     backgroundColor: "#ECECEC",
     height: "calc(100vh - 75px - 75px)",
-  },
-  formContainer: {
-    textAlign: "center",
-    backgroundColor: "white",
-    borderRadius: "10px",
-    boxShadow: "0px 0px 10px #333333",
-    width: "400px",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  input: {
-    width: "75%",
-    padding: "1em",
-    margin: "1em",
-  },
-  textInput: {
-    width: "75%",
-    height: "100px",
-    padding: "1em",
-    margin: "1em",
-  },
-  button: {
-    backgroundColor: "#4267B2",
-    borderRadius: "10px",
-    color: "white",
-    textTransform: "uppercase",
-    fontWeight: "bold",
-    padding: "10px 60px",
-    margin: "1em",
   },
 });
 
@@ -84,40 +51,7 @@ const CreateIssueView = (props) => {
     <>
       <Header title="Create Issue" />
       <div className={classes.container}>
-        <div className={classes.formContainer}>
-          <h3>Submit Issue</h3>
-          <Formik
-            initialValues={{ title: "", body: "" }}
-            onSubmit={(values) => handleSubmit(values)}
-            render={(formikProps) => (
-              <Form className={classes.form}>
-                <Field
-                  className={classes.input}
-                  placeholder="Title"
-                  name="title"
-                  type="text"
-                />
-                <Field
-                  className={(classes.input, classes.textInput)}
-                  as="textarea"
-                  placeholder="Description"
-                  name="body"
-                  type="text"
-                />
-                <button
-                  disabled={
-                    formikProps.values.body.length < 5 ||
-                    formikProps.values.title.length < 5
-                  }
-                  className={classes.button}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </Form>
-            )}
-          />
-        </div>
+        <CreateIssueForm handleSubmit={handleSubmit} />
       </div>
     </>
   );
